@@ -1,0 +1,24 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#calculator{
+    margin-left: 50px;
+    height: 400px;
+    width: 300px;
+    border: 2px solid black;
+}
+
+#display{
+    height: 93px;
+    width: 292px;
+    border: 1px solid black;
+    font-size: xx-large;
+    padding: 4px;
+}
+#controlButtons>button{
+    height: 74px;
+    width: 70px;
+    font-size: x-large;
+}

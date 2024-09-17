@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice API Project</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="main">
+        <div id="section-1">
+            <input type="text" id="title"  placeholder="Enter Title">
+            <button id="add">Add</button>
+            <button id="update" class="disabled" onclick="updateTitle()">Update</button>
+        </div>
+        <div id="section-3">
+            <input type="text" id="editAll" placeholder="Enter title">
+            <button id="editAllButton">Edit All</button>
+        </div>
+        <div id="section-2">
+            <table id="table">
+                <th><input type="checkbox" id="checkAll"></th>   
+                <th><b id="selectedRowsHeader"></b></th>
+                <th><button id="deleteAllButton">DeletAll</button></th>
+            </table>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

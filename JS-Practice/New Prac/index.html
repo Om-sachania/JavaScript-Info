@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hover Button Example</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="main">
+        <div id="section-1">
+            <input type="text" id="item" placeholder="Item Name">
+            <input type="text" id="price" placeholder="Enter Price">
+            <button id="add" onclick="addRow()">Add Item</button>
+            <button id="update" class="disabled" onclick="updateItem()">Update Item</button>
+        </div>  
+        <div id="section-2">
+            <table id="table">
+                <th>ITEM NAME</th>
+                <th>ITEM PRICE</th>
+            </table>
+        </div>
+        <button id="upload" onclick="uploadItems()">UPLOAD</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

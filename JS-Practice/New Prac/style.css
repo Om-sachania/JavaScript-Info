@@ -1,0 +1,85 @@
+.disabled{
+    display: none;
+}
+
+#main{
+    /* border: 2px solid black; */
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    align-items: center;
+}
+
+#main #upload{
+    height: 24px;
+    width: 64px;
+    font-size: 12px;
+    text-align: center;
+    background-color: antiquewhite;
+    border: 1px solid black;
+}
+#section-1{
+    /* border: 2px solid red; */
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    /* margin: 14px; */
+}
+
+#section-1 input ,.itemName ,.itemPrice{
+    background-color: rgba(129, 127, 127,0.2);
+    border: 2px solid rgba(129, 127, 127,0.3);
+    padding: 8px;
+}
+
+#section-1 #add{
+    padding: 8px;
+    height: 36px;
+    width: 84px;
+    border: 2px solid blueviolet;
+    color: blueviolet;
+    background-color: #ffff;
+    text-align: center;
+}
+#section-1 #update{
+    padding: 8px;
+    height: 36px;
+    width: 100px;
+    border: 2px solid blueviolet;
+    color: blueviolet;
+    background-color: #ffff;
+    text-align: center;
+}
+#section-2{
+    /* border: 2px solid green; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#section-2 input{
+    background-color: rgba(129, 127, 127,0.2);
+    border: 2px solid rgba(129, 127, 127,0.3);
+    padding: 8px;
+}
+
+#section-2 .EditButton , #section-2 .DeleteButton{
+    height: 36px;
+    width: 74px;
+    font-weight: 900;
+    font-size: 16px;
+    text-align: center;
+    color: #ffff;;
+}
+
+#section-2 .EditButton{
+    background-color: rgb(80, 212, 28);
+}
+
+#section-2 .DeleteButton{
+    background-color: red;
+}
+#table{
+    border-spacing: 12px;
+}   

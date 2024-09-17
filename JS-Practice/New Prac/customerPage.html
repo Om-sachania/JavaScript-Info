@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Page</title>
+    <link rel="stylesheet" href="customerPageStyle.css">
+</head>
+<body>
+    <div id="main">
+        <div id="section-1">
+            <label>Search Items</label>
+            <input type="text" id="searchItems">
+            <button id="search">Search</button>
+            <button id="displayCart" onclick="displayCart()">Display Cart</button>
+        </div>
+        <div id="section-2">
+            <table id="table">
+                <th>ITEM NAME</th>
+                <th>ITEM PRICE</th>
+            </table>
+        </div>
+        <div id="cart">
+            <table id="cartTable"></table>
+        </div>
+    </div>
+    <script src="customerScript.js"></script>
+</body>
+</html>
