@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node Properties</title>
+</head>
+<body>WORLD
+    <p> A Paragraph </p>
+    <div>Below both divs are hidden</div>
+    <div hidden>First Hidden DIV</div>
+    <div id="elem">Second Hidden DIV</div>
+    <input type="text" id="id" value="Hello">
+
+    <script>
+        // nodeName or tagName : 
+        console.log(document.body.nodeName);
+        console.log(document.body.tagName); 
+
+        // Difference between nodeName & tagName : 
+        console.log(document.body.firstChild.tagName); //This will give UNDEFINED
+        console.log(document.body.firstChild.nodeName); // This will give #comment
+
+        // So from the above 2 statement we can see that : 
+            // tagName : Only supports element nodes.
+            // nodeName : Supports any type of node.
+        
+        // innerHTML : It is VALID for ELEMENT Node only.
+        console.log(document.body.innerText);
+        //document.body.innerHTML = "Hello World" // replacing/changing the body
+        //document.body.innerHTML = '<b>New Body'; // It auto corrects the script
+        //console.log(document.body.innerHTML);
+
+        // innerHTML += : 
+        let content = document.body;
+        //content.innerHTML+='<div>This is an DOM manipulation</div>';
+        // So basically it removes the old content & again reloads the old content + new content
+
+        // outerHTML : It is innerHTML + the element(HTML Tags) itself.
+        console.log(content.outerHTML);
+            // IMP NOTE : It does not modify the value :
+            //content.outerHTML='<p>This an Outer HTML</p>';
+            console.log(content.outerHTML); // It is still the same
+
+        // textContent : 
+        console.log(document.body.innerHTML);
+        console.log(document.body.textContent); // This returns the text inside the body
+        // Whereas the innereHTML returns the text with HTML Tags also present in it
+        
+        // Hidden Property : 
+        let elem = document.getElementById('elem');
+        //elem.hidden = true;
+            // Creating a Blinking Element : 
+            // setInterval(()=>elem.hidden = !elem.hidden,500)
+
+        /*
+            Node Type Properties : 
+            elem.nodeType == 1 for element nodes,
+            elem.nodeType == 3 for text nodes,
+            elem.nodeType == 9 for the document object,
+            elem.nodeType == 8 for the comment node
+
+            IMPORTANT NOTE : 
+                innerHTML & innerText are used for ONLY ELEMENT NODES.
+        */
+        
+        // NodeValue/data : Text node Content
+        let first = document.body.firstChild;
+        console.log(first.innerText)
+        console.log(first.data);
+        
+        // Difference Between attribute & property : 
+        let input = document.querySelector('input');
+        //console.log(input.id); // id
+        console.log(input.getAttribute('value')); // Hello
+        console.log(input.value); // Hello
+
+        input.value = "newValue";
+        console.log(input.value); // newValue
+        console.log(input.getAttribute('value')); // Hello (Old value).
+
+        input.setAttribute('value','123');
+        console.log(input.value); // newValue (Old value)
+        console.log(input.getAttribute('value')); // 123
+
+        /*
+            Main Difference Explaination : 
+                if ATTRIBUTE is changed : 
+                Then value of (PROPERTY) is changed (UNLESS PROPERTY IS CHANGED ABOVE)
+                    & value of (ATTRIBUTE) is changed
+
+                if PROPERTY is changed : 
+                    Then value of (PROPERTY) is changed
+                    & value of (ATTRIBUTE) is NOT changed.
+        */
+    </script> 
+</body>
+</html>

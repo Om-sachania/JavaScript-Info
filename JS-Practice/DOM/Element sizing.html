@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Sizing</title>
+    <style>
+        #example{
+            height: 100px;
+            width: 300px;
+            border: 20px solid red;
+            padding: 20px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <main id="main">
+        <article style="position: relative">
+            <div id="example" style="position: absolute;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora nulla obcaecati, pariatur quidem cupiditate, numquam suscipit expedita perferendis hic mollitia minima est dicta, ullam facere?</div>
+        </article>
+    </main>
+    <script>
+        let example = document.getElementById("example");
+        console.log(example.offsetParent); // main
+        console.log(example.offsetLeft); // 180 (note: a number, not a string "180px")
+        console.log(example.offsetTop); // 180
+        console.log(example.offsetWidth);
+        console.log(example.offsetHeight)
+
+        /*
+            offSetParent is the nearest ancestor that the browser uses for calculation :
+            1) CSS-positioned (position is absolute, relative, fixed or sticky), or
+            2) <td>, <th>, or <table>, or
+            3) <body>.
+        */ 
+
+        // ClientLeft/Top :
+        console.log("Client Left : ",example.clientLeft);
+        console.log("Client Top : ",example.clientTop);
+
+        // ClientWidth/Height : is the Sum of content width + padding 
+        console.log("Client Width : ",example.clientWidth);
+        console.log("Client Height : ",example.clientHeight);
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styles & Classes</title>
+</head>
+<body class="main page">
+    <script>
+        console.log(document.body.className);
+        document.body.classList.add('article');
+        console.log(document.body.className);   
+        //Toggle : If the class is present then it will remove it OR it will add it 
+        document.body.classList.toggle('main'); 
+        console.log(document.body.className); 
+
+        // Creating a notification : 
+        function showNotification({top=0,right=0,className,html}) {
+            let notification = document.createElement('div');
+            notification.className = 'notification';
+            
+            if (className) {
+                notification.classList.add(className);
+            }
+
+            notification.style.top = top + 'px';
+            notification.style.right = right + 'px';
+
+            notification.innerHTML = html;
+            document.body.append(notification);
+
+            setTimeout(()=> notification.remove(),500);
+        }
+
+        let i = 1;
+        //  setInterval(()=>{showNotification({top : 10,right:10,html : "NOTI " + i++});},700);
+    </script>
+</body>
+</html>

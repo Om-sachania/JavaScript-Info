@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change,Cut Events</title>
+</head>
+<body>
+    <!-- <input type="text" id='input' onchange="console.log(this.value)"> oninput : <span id="result"></span>
+
+    <select onchange="console.log(this.value)">
+        <option value="">Select something</option>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+    </select> -->
+
+    <!-- Task -->
+    <form action="" name="Calculator">
+        <p>Deposit Calculator</p>
+        <label for="Initial Deposit">Initial Deposit : </label>
+        <input type="number" name="money" value="100" required><br>
+        <br><label for="months">How many months? : </label>
+        <select name="monthSelection" id="timePeriod">
+            <option value="3">3 (minimum)</option>
+            <option value="6">6 (half-year)</option>
+            <option value="12" selected>12 (one year)</option>
+        </select><br>
+        <br><label for="interest">Interest per month?</label>
+        <input type="number" name="interest" value="10" required><br>
+        <br><input type="text"  name="display" disabled>
+    </form>
+    <script>
+        // Change Event : It triggers when element has finished changing.
+        // input.oninput= function(){
+        //     result.innerHTML = input.value;
+        // }
+
+        // Events : Cut,Copy,Paste : They belong to the ClipboardEvent Class
+        // input.onpaste=function(e){
+        //     console.log(e.type ," : ",e.clipboardData.getData('text/plain'));
+        //     e.preventDefault();
+        // }
+
+        // input.oncut=input.oncopy=function(e){
+        //     console.log(e.type + ' : ' +document.getSelection());
+        //     e.preventDefault();
+        // }
+
+        // Task 1 :
+        let calculator= document.forms.Calculator;
+        let resultDisplay = calculator.display;
+
+        calculator.money.oninput = calculate;
+        calculator.monthSelection.onchange = calculate;
+        calculator.interest.oninput = calculate;
+
+        function calculate() {
+            let initial = +calculator.money.value;
+            let month = calculator.monthSelection.value/12;
+            let interest = calculator.interest.value;
+
+            let result = (initial+(initial*interest*month)/100);
+            resultDisplay.value=result;
+        }
+
+        calculate();
+    </script>
+</body>
+</html>

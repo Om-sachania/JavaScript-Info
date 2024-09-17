@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moving the ball</title>
+    <style>
+        .field{
+            border: 10px solid black;
+            height: 200px;
+            width: 200px;
+            background-color: lawngreen;
+            position: relative;
+        }
+        img{
+            height: 50px;
+            transition: 1s all;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="field">
+        <img src="images/football.jpg" alt="" srcset="" id="football">
+    </div>
+
+    <script>
+        let football = document.getElementById('football');
+        football.addEventListener('click',function(e){
+            console.log(e.clientX,' : ',e.clientY);
+        })
+
+        let field = document.getElementsByClassName('field');
+        field[0].addEventListener('click',function(e){
+            let xCoordinate = e.clientX;
+            let yCoordinate = e.clientY;
+            football.translate=true;
+            football.translateY=yCoordinate;
+        })
+
+
+    </script>   
+</body>
+</html>

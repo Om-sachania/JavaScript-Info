@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Delegation</title>
+    <style>
+        table td{
+            width: 150px;
+            white-space: nowrap;
+            text-align: center;
+            vertical-align: bottom;
+            padding-top: 5px;
+            padding-bottom: 12px;
+            border: 2px solid black;
+        }
+
+        .highlight {
+            background-color: aqua;
+        }
+
+        #horse,#donkey,#cat{
+            background-color: rgb(126, 208, 99);
+            border: 1px solid black;
+            padding: 16px;
+            display: flex;
+        }
+
+        #horse>a,#donkey>a,#cat>a{
+            text-decoration: none;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <table id="table">
+        <tr>
+            <td class="one"><b>ONE</b></td>
+            <td class="two"><b>TWO</b></td>
+            <td class="three"><b>THREE</b></td>
+        </tr>
+        <tr>
+            <td class="four"><b>FOUR</b></td>
+            <td class="five"><b>FIVE</b></td>
+            <td class="six"><b>SIX</b></td>
+        </tr>
+        <tr>
+            <td class="seven"><b>SEVEN</b></td>
+            <td class="eight"><b>EIGHT</b></td>
+            <td class="nine"><b>NINE</b></td>
+        </tr>
+    </table>
+
+    <div id="container">
+        <div class="animal">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit, ipsum provident minima nulla suscipit aut deleniti officiis autem soluta nihil!
+            <button class="remove-button">[x]</button>
+        </div>
+        <div class="animal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores neque aperiam doloribus natus accusamus, vitae nemo quibusdam dolor incidunt vel?
+            <button class="remove-button">[x]</button>
+        </div>
+        <div class="animal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum ducimus repellat fugiat fugit sint quo illo perferendis ratione voluptas deserunt.
+            <button class="remove-button">[x]</button>
+        </div>
+    </div>
+    <script>
+        let table = document.getElementById('table');
+        table.onclick = function(e){
+            let target = e.target;
+
+            if (target.tagName !='TD') return;
+
+            highlight(target);
+        }
+
+        let selectedTD;
+
+        function highlight(td) {
+            console.log("Before Selected TD : ",selectedTD);
+            if(selectedTD){
+                selectedTD.classList.remove('highlight');
+            }
+            selectedTD=td;
+            console.log("After Selected TD : ",selectedTD);
+            selectedTD.classList.add('highlight');
+        }
+
+        /* Event Delegation : 
+            If we have many elements that gets handled in same way then adding event listner to each one 
+            specifically is not an better way. Rather than add one single event listner to their common
+            ancestor. This process is known an EVENT DELEGATION.
+
+            Event Delegation uses the concept of bubbling. When we apply the event listner to the ancestor
+            & when we click the child of it the event bubbles up to the parent element.
+        */
+        
+        // Task : 
+        let container = document.getElementById('container');
+        console.log(container)
+        container.onclick= function(e){
+            if(e.target.className!='remove-button') return;
+            
+            let item = e.target.closest('.animal');
+            console.log(item);
+            item.remove();
+        }; 
+    </script>
+</body>
+</html>

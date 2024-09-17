@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focusing</title>
+    <style>
+        .invalid {background-color: red; }
+        #error { color: red }
+
+        li { cursor: pointer; }
+        :focus { outline: 1px dashed green; }
+
+        #inputField{
+            height: 200px;
+            width: 200px;
+            border: 2px solid black;
+        }
+        .focused{
+            border: 2px solid blue
+        }
+    </style>
+</head>
+<body>
+    <!-- Enter Email : <input type="email" id="input">
+    <div id="error"></div> -->
+
+
+    <!-- Enter Email : <input type="email" id="input">
+    <input type="text" style="width:220px" placeholder="make email invalid and try to focus here"> -->
+
+    <!-- <ul>
+        <li tabindex="1">One</li>
+        <li tabindex="0">Zero</li>
+        <li tabindex="2">Two</li>
+        <li tabindex="-1">Minus one</li>
+    </ul> -->
+
+    <div id="inputField">Text</div>
+    <script>
+        // input.onblur= function(){
+        //     if(!input.value.includes('@')){
+        //         input.classList.add('invalid');
+        //         error.innerHTML='Please Enter the correct email';
+        //     }
+        // }
+        // input.onfocus=function(){
+        //     if(this.classList.contains('invalid')){
+        //         this.classList.remove('invalid');
+        //         error.innerHTML='';
+        //     }
+        // }
+
+        // Focus/Blur Method : 
+        input.onblur=function(e){
+            if(!this.value.includes('@')){
+                this.classList.add('invalid');
+                input.focus(); // This focus methods add focus until the if condition is true
+            }
+            else{
+                this.classList.remove('invalid');
+            }
+        }
+
+        // NOTE : div,span,table are unfocusable by default
+
+        // TabIndex : It initially starts from 1 & then goes to the next elements 
+        // NOTE : element with tabIndex=0 are considered elements without tabIndex & they come after 
+        // all the elements tabIndex>=1 are finished.
+
+        // Task : 
+        let div = document.getElementById('inputField');
+        div.onclick=function(e){
+            e.target.classList.add('focused');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubbling & Capturing</title>
+    <style>
+        body * {
+            margin: 10px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <form id="form" onclick="alert('form')">Form
+        <div onclick="alert('div')">Div
+            <p onclick="alert('p')">P</p>
+        </div>
+    </form>
+
+    <button id="myButton">Stop Immediate Propogation</button>
+    <!--
+        Bubbling means : 
+            When an event happens on the element it first runs the handler on it 
+            then on its parent & all the way to its ancestors.
+        
+        So on clicking in paragraph(p) : 
+        first 'p' alerts
+        then 'div' alerts
+        then 'form' alerts
+    -->
+    <script>
+        let form = document.getElementById('form');
+        // form.addEventListener('click',function(e){
+        //     alert('form');
+        //     console.log(this);
+        // },true)
+
+        // Event.target : 
+        // target : it is the element on which the click is done
+        // this : The current element on which the handler is running.
+
+        form.onclick=function(event){
+            console.log("target = " + event.target.tagName + ", this=" + this.tagName);
+        }
+
+        // Bubbling means ('bottom to top' OR 'child to Parent')
+        // Capturing means ('top tp bottom' OR 'parent to Child');
+
+        // Stop Immediate Propogation : It is useful when there are more than 1 handler on an single elem.
+        let button = document.getElementById('myButton');
+
+        button.addEventListener('click',function(event){
+            console.log('First Handler');
+            event.stopImmediatePropagation();
+        });
+
+        let body = document.body;
+        body.addEventListener('click',function(e){
+            console.log('Body clicked');
+        });
+
+        button.addEventListener('click',function(e){
+            console.log('Second Handler')
+        })
+    </script>
+</body>
+</html>

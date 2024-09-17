@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Events</title>
+    <style>
+        #mouseEvent{
+            width: 200px;
+            height: 200px;
+            border: 2px solid black;
+            margin-bottom: 25px;
+        }
+        .selected{
+            background-color: lime;
+        }
+    </style>
+</head>
+<body>
+    <button id="clickButton" oncontextmenu="return false">Click</button>
+    <div id="mouseEvent"></div>
+    <span ondblclick="alert('Hello')">Double-Click ME</span>
+
+    <br>
+    Before...
+    <b ondblclick="alert('Click!')" onmousedown="return false">
+        Double-click me
+    </b>
+    ...After
+
+    <!-- Preventing From Copying the element -->
+    <div oncopy="alert('Copying forbidden!');return false">
+        Dear user,
+        The copying is forbidden for you.
+        If you know JS or HTML, then you can get everything from the page source though.
+    </div>
+
+    <!-- From above oncopy div user can copy the html content and then from there they can get content-->
+
+    <!-- Task -->
+    <ul id="taskList">
+        <li>A</li>
+        <li>B</li>
+        <li>C</li>
+        <li>D</li>
+    </ul>
+    <script>
+        // clickButton.addEventListener('click',function(e){
+        //     alert(e.button)
+        // })
+
+        // Using Modifiers (Shift,alt & ctrl)
+        clickButton.onclick=function(e){
+            if(e.altKey && e.shiftKey){
+                console.log("Pressed using Shift & Alt key!!");
+            }
+        }
+        mouseEvent.onmousemove=function(e){
+            console.log('X : ',e.clientX);
+            console.log('Y : ',e.clientY);
+        }
+
+        // Task : 
+        let unorderList = document.getElementById("taskList");
+        unorderList.onclick= function(e){
+            if(e.target.tagName!='LI') return;
+
+            function addingClass(li){
+                let selected = unorderList.querySelectorAll('.selected');
+                for(let elem of selected) {
+                    elem.classList.remove('selected');
+                }
+                li.classList.add('selected');
+            }
+
+            addingClass(e.target);
+            // let elem = e.target;
+            // if (e.target.className=='') {
+            //     elem.classList.add('selected');
+            // }
+            // else{
+            //     elem.classList.remove('selected');
+            // }
+        }
+    </script>
+</body>
+</html>

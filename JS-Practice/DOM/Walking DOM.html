@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walking The DOM</title>
+    <script>
+        console.log(`From Head : ${document.body}`);
+        // In DOM 'null' means it does not exist.   
+    </script>
+</head>
+<body>
+    <div>Users: </div>
+    <ul>
+        <li>John</li>
+        <li>Pete</li>
+    </ul>
+<!--
+    <div>Begin</div>
+
+    <ul>
+        <li>Information</li>
+    </ul>
+
+    <div>End</div>
+
+    <table id="table">
+        <tr>
+            <td>One</td><td>Two</td>
+        </tr>
+        <tr>
+            <td>Three</td><td>Four</td>
+        </tr>
+    </table>
+-->
+    <script>
+        console.log(document.documentElement) // HTML
+        console.log(`From Body : ${document.body}`);
+        for (let i = 0; i < document.body.childNodes.length; i++) {
+            console.log(document.body.childNodes[i]);
+        }
+        /*
+            Note : 
+                In the above result of for-loop the last child is the script but 
+                below it we can see there is a DIV as well. This is because at the
+                time of script execution the browser did not read it.
+        */
+        
+        /*
+            Important Note : 
+                document.body.childNodes looks like a array but it is not an array
+                it is COLLECTION (Special Array like Object).
+
+                On it array-methods won't work!!.
+        */
+
+        // Siblings : 
+
+        // Difference between nextSibling & nextElementSibling : 
+            // nextSibling/previousSibling : contains all nodes(inc. text,comment) 
+        console.log(document.head.nextSibling); // It will be TEXT node
+        console.log(document.body.previousSibling); // It will be TEXT node
+
+            // ElementSibling : contains only element nodes(DIV,span & etc.)
+        console.log(document.head.nextElementSibling); // It will be <body>
+        console.log(document.body.previousElementSibling); // It will be <head>
+
+        // Children : It will only show element node
+        console.log("Children : ");
+        for (let element of document.body.children) {
+            console.log(element);
+        }
+
+        // Using DOM in Table : 
+        // let td = table.rows[0].cells[1];
+        // td.style.backgroundColor = 'cyan';
+        
+        let div = document.body.children[0];
+        let ul = document.body.children[1];
+        let peteLi = ul.children[1];
+
+        console.log("Tasks : ")
+        console.log(div);
+        console.log(ul);
+        console.log(peteLi);
+        /*
+        NOTE : ACCESSING A TABLE 
+
+        let table = document.getElementById('test');
+        //let table = document.querySelector('#test');
+        //let table = document.querySelector('table');
+        //let table = document.getElementsByTagName('table'); // it returns an HTML Collection
+        console.log(table);
+        console.log(table.childNodes); // It returns an nodeList
+        console.log(table.children); // It returns HTML Collection
+        console.log(table.rows); // It returns an HTML Collection
+        console.log(table.tBodies);
+        // For accessing the cell of an table you need to specify the row number: 
+        console.log(table.rows[0].cells);
+        */
+    </script>
+</body>
+</html> 

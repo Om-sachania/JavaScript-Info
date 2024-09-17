@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser Events</title>
+</head>
+<body>
+    <!-- HTML - Attribute -->
+    <input type="button" value="Click Me" ondblclick="alert('Click!')">
+    <input type="button" value="Count Number" onclick="countNum()">
+
+    <!-- Using DOM Property -->
+    <input type="button" value="Using DOM" id="elem">
+    <input type="button" value="Notify Me" id="Notify" onclick="alert('Before')">
+
+    <!-- Remove Handler -->
+    <input type="button" value="Remove Handler" id="btn" onclick="alert('Hello')">
+
+    <!-- addEvent Listner -->
+    <input type="button" value="Event Listner" id="event">
+
+    <!-- Event Object -->       
+    <input type="button" value="Event Object" id="eventObj">
+
+    <!-- Toggle Button -->
+    <input type="button" value="Change color" id="changeColor">
+
+    <script>
+        // Using a function when we click the button : 
+        function countNum() {
+            for (let i = 0; i < 3; i++) {
+                console.log("Number : ",i);
+            }
+        }
+
+        // Using DOM Property 
+        let elem = document.getElementById('elem');
+        elem.onclick = function(){
+            alert("Using DOM Property Successful");
+        }
+
+        // Note : We can't assign more than one event handler. Below is an example 
+        let notify = document.getElementById('Notify');
+        notify.onclick = function (){
+            alert('After');
+        }
+
+        // As we saw when we clicked the 'Notify Me' button then it alerts 'After'
+        // It over writes the onClick given in html tag!
+
+        // Remove an Handler : 
+        let btn = document.getElementById('btn');
+        btn.onclick = null; // The Using DOM Button's handler is removed!
+
+        // Possible Mistake : 
+        function sayThanks(){
+            alert('Thanks');
+        }
+
+        /* 
+        // Correct Method :
+            elem.onclick = sayThanks
+        
+        // Wrong Method : 
+            elem.onclick = sayThanks(); 
+            This will give undefined(as the function returns nothing) 
+        */
+
+        // setAttribute will not work : 
+        document.body.setAttribute('onclick', function() { alert(1) });
+        // As attributes are always 'String' so dunction becomes an 'String'
+
+        // addEventListner : 
+        let event = document.getElementById('event');
+        //event.addEventListener('click',() => alert('Event Listner Fired!!'));
+
+        // Removing Event Listener :
+        event.removeEventListener('click',() => alert('Event Listner Fired!!'));
+            // The above will not work as it got an another function with same code
+
+            // So to work it : 
+            function handler() {
+                alert("Thanks");
+            }
+            event.addEventListener('click',handler);
+
+            event.removeEventListener('click',handler); // Successfully Removed!
+
+        // Some Event only work with Event Listener : 
+        document.onDOMContentLoaded = function() {
+            alert("DOM Built"); // This will won't work!!
+        } 
+
+        document.addEventListener("DOMContentLoaded",function(){
+            console.log("DOM Built");
+        })
+
+        //Event Object : 
+        let eventObj = document.getElementById('eventObj');
+        eventObj.onclick = function(e){
+            console.log("Type of event : ",e.type);
+            console.log("Coordinates : ",e.clientX + ':'+e.clientY);
+            console.log("TimeStamp : ",e.timeStamp);
+            console.log(e)
+        }
+        
+        // Passing a Object in Event : 
+        let obj={
+            handleEvent(event) {
+                console.log(event.type + " on " + event.currentTarget);
+            }   
+        }
+
+        eventObj.addEventListener('click',obj);
+
+        // Changing background color :
+        let toggle = document.getElementById('changeColor');
+        let body = document.querySelector('body');
+        toggle.addEventListener('click', () => {
+            if(body.style.backgroundColor=='black'){
+                body.style.backgroundColor='white';
+            }else{
+                body.style.backgroundColor='black';
+            }
+        });
+
+    </script>
+</body>
+</html>

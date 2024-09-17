@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button data-hello="save" id="saveButton">Save</button>
+    <button data-action="delete" id="deleteButton">Delete</button>
+
+    <div id="menu">
+        <button data-action="save">Save</button>
+        <button data-action="load">Load</button>
+        <button data-action="search">Search</button>
+    </div>
+
+    <script>
+        // let saveButton = document.getElementById('saveButton')
+        // //console.log(saveButton)
+        // saveButton.addEventListener('click',function(){
+        //     console.log(saveButton.dataset)
+        //     console.log(saveButton.getAttribute('data-hello'))
+        //     console.log(this.dataset)
+        //     console.log("First Event Listener Fired");
+        // });
+
+        class Menu {
+            constructor(elem) {
+                this._elem = elem;
+                console.log(this._elem)
+                elem.onclick = this.onClick.bind(this); // (*)
+            }
+
+            save() {
+                console.log('saving');
+            }
+
+            load() {
+                console.log('loading');
+            }
+
+            search() {
+                console.log('searching');
+            }
+
+            onClick(event) {
+                let action = event.target.dataset.action;
+                // console.log(action)
+                // console.log(this)
+                if (action) {
+                    console.log(this)
+                    console.log(action)
+                    console.log(this[action]);
+                }
+            };
+        }
+
+        new Menu(menu);
+
+    </script>
+</body>
+</html>

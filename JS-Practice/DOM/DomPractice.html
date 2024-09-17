@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DomPractice</title>
+</head>
+<body>
+    <p>This is the first paragraph</p>
+    <div id="testDiv">This is an Div</div>
+    <script>
+        let div = document.getElementById('testDiv');
+        let newPara = document.createElement('p');
+
+        newPara.innerHTML = 'This is an new Paragraph';
+        document.body.append(newPara);
+
+        let firstPara = document.querySelector('p');
+        div.after(firstPara);
+
+        let lastPara = document.querySelector('p:last-child')
+        console.log(lastPara)
+
+        lastPara.remove();
+        //document.body.after(newPara);
+        //document.body.before(newPara)
+    </script>
+</body>
+</html>

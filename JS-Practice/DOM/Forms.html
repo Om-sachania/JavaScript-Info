@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms</title>
+</head>
+<body>
+    <form action="" id="myForm">
+        <input name="one" value="1">
+        <input name="two" value="2">
+    </form>
+    <!-- <form action="" id="secondForm">
+        <input type="radio" name="age" value="10">
+        <input type="radio" name="age" value="20">
+    </form>  -->
+
+    <!-- <form id="subForm">
+        <fieldset name="userFields">
+            <legend>info</legend>
+            <input name="login" type="text">
+        </fieldset>
+    </form> -->
+
+    <!-- <select id="select">
+        <option value="apple">Apple</option>
+        <option value="banana">banana</option>
+        <option value="strawberry">strawberry</option>
+    </select> -->
+
+    <!-- Multiple Select Options -->
+    <!-- <select id="select" multiple>
+        <option value="blues" selected>Blues</option>
+        <option value="rock" selected>Rock</option>
+        <option value="classic">Classic</option>
+    </select> -->
+
+    <!-- Task -->
+    <select id="genres">
+        <option value="rock">Rock</option>
+        <option value="blues" selected>Blues</option>
+    </select>
+
+    <script>
+        //console.log(document.forms[0]);
+        //let form=document.forms[0];
+
+        // Accessing the elements of form : (Below are different methods of accessing same element)
+        // console.log(form.elements.one); // input tag with name 'one';
+        // console.log(form.elements[0]); //  input tag with name 'one';
+        // console.log(myForm.one)
+        // NOTE : Item method takes index as an argument and returns the element :
+        //console.log(form.elements.item(0)) // input tag with name 'one';
+        // NOTE : namedItem method takes the name/id as argument and returns the element : 
+        //console.log(form.elements.namedItem('one')) // input tag with name 'one'
+
+        // Getting Length of form
+        //console.log(form.elements.length); // Returns length = 2
+
+
+        // Sub forms : 
+            // console.log("Example of SubForms")
+            // console.log(subForm.elements.login); // <input name="login">
+            // let fieldset = subForm.elements.userFields;
+            // console.log(fieldset); // HTMLFieldSetElement
+
+            // // we can get the input by name both from the form and from the fieldset
+            // console.log(fieldset.elements.login == subForm.elements.login);
+
+        // Backreference : element.form
+        let two= myForm.two;
+        console.log(two); // input tag with name 'two'
+
+        console.log(two.form) // You can get the form from any element of that form
+
+        // Select & Options : Below 3 lines does the same thing 
+            //select.options[1].selected=true;
+            //select.selectedIndex=1;
+            //select.value = 'strawberry';
+
+        // Multiple Select Options : 
+        // let selected = Array.from(select.options).filter(option=>option.selected).map(option=>option.value)
+        // console.log(selected);
+
+        // Tasks : 
+
+        let selectedOption = genres.options[genres.selectedIndex]
+        console.log(selectedOption);
+
+        // let newOption = new Option("Classic","classic");
+        // genres.appendChild(newOption);
+
+        //newOption.selected=true;
+        console.log(genres.value);
+    </script>
+</body>
+</html>
+

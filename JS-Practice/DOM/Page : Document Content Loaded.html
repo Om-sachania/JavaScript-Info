@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page : Document Content Loaded</title>
+</head>
+<body>
+    <script>
+        // DOM Content Loaded : 
+        // function ready(){
+        //     console.log("DOM is Ready!");
+        //     console.log(`Image Size : ${img.offsetWidth}x${img.offsetHeight}`);
+        // }
+        // document.addEventListener('DOMContentLoaded',ready);
+
+        // window.onload : It waits for the whole page to load including the styles, images & etc.
+        window.onload=function(){
+            console.log('Page Loaded!!');
+            console.log(`Image Size : ${img.offsetWidth}x${img.offsetHeight}`);
+        };
+
+        /* Note : The difference between DOMContentLoaded & onload function (AS PER ABOVE EXAMPLE) :
+            console.log("DOM is Ready!");
+            console.log(`Image Size : ${img.offsetWidth}x${img.offsetHeight}`); // 0x0
+            Occurs before the image is loaded.
+
+            And in the onload it occurs after the image is loaded 
+            Gives me the correct height and width of the image also.(NOT 0x0)
+        */
+        console.log(document.cookie);
+    </script>
+    <img id="img" src="https://en.js.cx/clipart/train.gif?speed=1&cache=0">
+</body>
+</html>

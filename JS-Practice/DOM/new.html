@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New</title>
+</head>
+<body>
+    <input type="text" id="id" value="Hello">
+    <script>
+        let input = document.querySelector('input');
+        
+        console.log(input.getAttribute('value')); // Hello
+        console.log(input.value); // Hello
+
+        input.setAttribute('value','123');
+        console.log(input.value); // newValue (Old value)
+        console.log(input.getAttribute('value')); // 123
+
+        input.value = "newValue";
+        console.log(input.value); // newValue
+        console.log(input.getAttribute('value')); // Hello (Old value).
+    </script>
+</body>
+</html>

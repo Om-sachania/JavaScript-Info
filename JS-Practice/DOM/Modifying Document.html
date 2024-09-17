@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifying Document</title>
+    <style>
+        #alertDiv {
+            padding: 15px;
+            border: 1px solid #d6e9c6;
+            border-radius: 4px;
+            color: #3c763d;
+            background-color: #dff0d8;
+        }
+
+        .Hello{
+            padding: 15px;
+            border:2px solid black;
+            background-color: aqua;
+        }
+
+        #ol{
+            border: 2px solid red;
+        }
+        </style>
+</head>
+<body>
+    <div id="parentDiv">This an DIV ID Element</div>
+    <ol id="ol">
+        <li>0</li>
+        <li>1</li>
+        <li>2</li>
+    </ol>
+    <script>
+        // Creating an element : 
+        //let div = document.createElement('div');
+
+        // Creating a Message(Same as an ALERT) : 
+        let div = document.createElement('div');
+        div.id = 'alertDiv';
+        div.innerHTML = "<strong>Hi There!!</strong> You've read an important message."
+
+        document.body.append(div);
+
+        // Adding an element to DIV
+
+        let h1 = document.createElement('h1');
+        h1.innerHTML = "This is a H1 Tag!!";
+        div.appendChild(h1); 
+
+        // Creating a Text Node : 
+        let textNode = document.createTextNode("Hello this is an TextNode!!"); 
+        textNode.appendData("Appended Data");
+        document.body.append(textNode); 
+
+        let newTextNode = document.createTextNode("A NEW TEXT NODE!");
+        // textNode.appendChild(newTextNode); // This will throw Error!
+
+        /*
+            IMPORTANT Note : 
+            You cannot use 'appendChild()' or 'append()' method on the TEXT NODE 
+        */
+
+        // Append Method : 
+        let nextDiv = document.createElement('div');
+        nextDiv.className = 'Hello';
+        nextDiv.innerHTML = "This is an Second Div";
+
+        let para = document.createElement('p');
+        para.innerHTML = "An Paragraph Here!";
+
+        let childOne = document.createElement('p');
+        childOne.innerHTML = "Child One ParaGraph!"
+
+        let childTwo = document.createElement('p');
+        childTwo.innerHTML = "Child Two ParaGraph!"
+
+        document.body.append(nextDiv);
+        document.body.append("An Appended Text");
+
+        nextDiv.appendChild(para);
+        //nextDiv.appendChild("Append Child Text"); // This gives an Error!!
+
+        //nextDiv.append(childOne,childTwo); // ChildOne & ChildTwo ADDED
+        nextDiv.appendChild(childOne,childTwo); // Only ChildOne is added & ChildTwo is ignored.
+
+        /*
+            Difference Between Append & AppendChild : 
+                Append : It allows both adding Elements & DOMStrings
+                AppendChild : It only allows adding Elements.   
+
+                Append : Does not return a Value
+                AppendChild : It returns the appended node object
+
+                Append : Allows you to add multiple items
+                AppenChild : Allows only to add a single item
+        */
+        
+        // Before & After Method : 
+        ol.before('before'); // It adds text/node before the Ordered List Starts(Outside OL)
+        ol.prepend('Prepend'); // It adds text/node at beginning of Ordered List (Inside OL)
+        ol.append("Append") // It adds text/node at ending of Ordered List (Inside OL)
+        ol.after('after'); // It adds text/node after the Ordered List ends(Outside OL)
+        ol.after('<b>BOLD TAG</b>'); // It adds a string not an HTML    
+
+        // insertAdjacentHTML/Text/Element : 
+
+        parentDiv.insertAdjacentHTML('beforebegin','<p>Hello</p>');
+        parentDiv.insertAdjacentHTML('afterend','<p>Bye</p>');
+
+        /*
+            NOTE : 
+                before = beforebegin
+                after = afterend
+                prepend = afterbegin
+                append = beforeend
+
+            They are just the difference is that insertAdjacentHTML adds HTML
+        */
+
+        // Node Removal : 
+            // Lets remove a div tag with alert ID after 2 secs :
+        //setTimeout(()=> alertDiv.remove() , 2000)
+
+        // Swapping Elements : 
+        nextDiv.after(alertDiv); // Swapped both the divs.
+
+        // Cloning the node : 
+        let div2 = alertDiv.cloneNode(true);
+        div2.querySelector('strong').innerHTML = 'Bye There!';
+
+        alertDiv.after(div2);
+
+        /*
+        NOTE : 
+            If we use cloneNode(false) then it creates a node without child Elements 
+        */
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events Practice</title>
+</head>
+<body>
+    <button onclick="alert('Button Clicked')">Click Me</button>
+    <button onmousedown="console.log('Button Pressed')" onmouseup="console.log('Button released')">
+        Button Press and Release
+    </button>
+
+    <div id="box" onmouseover="this.style.backgroundColor='cyan'" onmouseout="this.style.backgroundColor='white'">
+        Hover on me
+    </div>
+
+    <input type="text" onblur="console.log('Blur Event')" onfocus="console.log('Focus Event')" placeholder="onBlur-Focus">
+
+    <input type="text" onchange="writeText(this)" placeholder="onchange">
+    <input type="text" oninput="writeText(this)" placeholder="onInput" onkeypress="">
+
+    <p id="para"></p>
+
+    <p id="newPara">This is an new Paragraph</p>
+    <button onclick="addRemove(true)">Add Event</button>
+    <button onclick="addRemove(false)">Remove Event</button>
+
+    <script>
+        function writeText(elem){
+            let paragraph = document.getElementById('para');
+            paragraph.innerHTML = elem.value
+        }
+
+        let paragraph = document.getElementById('newPara');
+
+        function test(){
+            console.log("Clicked!!");
+        }
+
+        function addRemove(add){
+            if(add){
+                paragraph.addEventListener('click',test);
+            }
+            else{
+                paragraph.removeEventListener('click',test);
+            }
+        }
+    </script>
+</body>
+</html>

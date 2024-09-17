@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attributes & Properties</title>
+</head>
+<body id="test" class="checkClass" something="not allowed"><div></div>
+    <div data-widget-name = "menu">Choose the genre</div>
+    <input type="text" id="inputID">
+
+    <!-- Difference between Properties and Attribute -->
+    <!-- <input type="text" value="Input Value" customAttribute="hi"> -->
+    
+    <script>
+        // DOM Properties : 
+        document.body.myData = {
+            name : "Mark",
+            age : 41
+        }
+        console.log(document.body.myData);
+        console.log(document.body.myData.age);
+
+            // Adding a method : 
+                // Note : This method works for only BODY element
+            document.body.sayTagName = function (params) {
+                console.log(this.tagName);
+            }
+            document.body.sayTagName();
+
+            // This below method works for all the ELEMENTS
+            Element.prototype.sayHi = function (){
+                console.log(this.tagName);
+            }
+            let x = document.body.firstElementChild;
+            x.sayHi();
+            document.head.sayHi();
+
+        // HTML Attributes : 
+        console.log(document.body.id); // test
+        console.log(document.body.something); // This returns undefined
+        console.log(document.body.className); // checkClass
+        
+        // As 'something' attribute is non-standard attribute.
+        /*
+        Methods for accessing the attributes : 
+            elem.hasAttribute(name) – checks for existence.
+            elem.getAttribute(name) – gets the value.
+            elem.setAttribute(name, value) – sets the value.
+            elem.removeAttribute(name) – removes the attribute.
+        */
+        
+        // Now we can access the 'something' attribute : 
+        console.log(document.body.getAttribute('something')); // not allowed
+        console.log(test.getAttribute('something'));
+        console.log(document.body.querySelector('[something]'));
+        test.setAttribute('Value',5645);
+        console.log(test.attributes);
+
+        // Task 1 : 
+        let customAttribute = document.body.children[1]
+        console.log(customAttribute.dataset.widgetName);  
+
+        // Or : 
+        console.log(customAttribute.getAttribute('data-widget-name'));
+
+        // Difference between Property and Attribute
+        // let input = document.querySelector('input');
+        // console.log(input);
+
+        // console.log("Property : ",input.value)
+        // console.log("Attribute : ",input.getAttribute('value'));
+
+        // input.setAttribute('value','Again Hello');
+
+        // console.log("Property : ",input.value)
+        // console.log("Attribute : ",input.getAttribute('value'));
+
+        // input.value='Hello';
+
+        // console.log("Property : ",input.value)
+        // console.log("Attribute : ",input.getAttribute('value'));
+
+        // Difference Between Properties and Attribute : 
+        /*
+            Attribute are which we are giving in HTML and 
+            Properties are which we are accessing through node.
+
+            Property gives us the current value 
+            When we do getAttribute() it gives the VALUE  
+        */
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #displayImage{
+            height : 400px;
+            width: 400px;
+            border: 2px solid black;
+        }
+
+        #imageSelection{
+            margin-top: 8px;
+            padding: 8px;
+            height: 100px;
+            width: 400px;
+
+            border: 2px solid red;
+            display: flex;
+            gap: 8px;
+        }
+
+        .images{
+            height: 80px;
+            width: 80px;
+            border: 1px solid blue;
+        }
+
+        img{
+            height: 80px;
+            width: 80px;
+        }
+
+        #main{
+            height: 400px;
+            width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div id="displayImage">
+        <img src="" alt="" srcset="" id="main">
+    </div>
+    <div id="imageSelection">
+        <div class="images"><img src="images/football.jpg" alt="" srcset=""></div>
+        <div class="images"><img src="images/1.jpg" alt="" srcset=""></div>
+        <div class="images"><img src="images/2.jpeg" alt="" srcset=""></div>
+        <div class="images"><img src="images/3.jpg" alt="" srcset=""></div>
+    </div>
+    <script>
+        let groupOfImages = document.getElementById('imageSelection');
+        let displayDiv = document.getElementById('displayImage');
+
+        groupOfImages.onclick=function(e){
+            let img=e.target.closest('img');
+            displayDiv.children[0].src=img.src
+        }
+    </script>
+</body>
+</html>

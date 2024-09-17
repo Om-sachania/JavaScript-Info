@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dispatching Custom Events</title>
+</head>
+<body>
+    <h1 id="elem">Hello from the script</h1>
+    <h2 id="heading">Hello from John</h2>
+    <button id="myButton">Click Me</button>
+    <script>
+        let myEvent = new Event("customEvent");
+        console.log(myEvent)
+        document.addEventListener('customEvent',function(e) {
+            console.log("Custom Event : ",e);
+        })
+        //document.dispatchEvent(myEvent);
+
+        let myButton = document.getElementById('myButton');
+        // myButton.addEventListener('myclick',function(e){
+        //     console.log("Button Clicked!!")
+        // })
+
+        // let customEvent = new Event('myclick');
+        // myButton.dispatchEvent(customEvent)
+
+        // Bubbing Example : 
+        
+        // let newEvent = new Event("hello",{bubbles:true});
+        // document.addEventListener('hello',function(e){
+        //     console.log("Hello from ",e.target.tagName);
+        // })
+
+        //elem.dispatchEvent(newEvent);
+
+        // without bubbles:true nothing will come in output 
+
+        // MouseEvent, KeyboardEvent & others : 
+        let myMouseEvent = new MouseEvent("click",{
+            bubbles : true,
+            cancelable : true,
+            clientX : 100,
+            clientY : 100
+        });
+        //console.log(myMouseEvent);
+
+        myButton.dispatchEvent(myMouseEvent);
+        myButton.addEventListener('click',function(e){
+            console.log("Mouse Clicked!!!");
+        })
+        // let event1 = new Event("click",{
+        //     bubbles : true,
+        //     cancelable : true,
+        //     clientX : 50,
+        //     clientY : 60
+        // }); 
+
+        // console.log(event1.clientX) // This gives me undefined
+
+        let myKeyboardEvent = new KeyboardEvent('keydown',{
+            keyCode : 45,
+        });
+
+        console.log(myKeyboardEvent.keyCode);
+
+        // Custom Events : (It is same as Event but it has an additional 2nd argument(object) we can add property to it)
+        // heading.addEventListener("customHello",function(e){
+        //     console.log(e.detail.name);
+        // });
+
+        // heading.dispatchEvent(new CustomEvent("customHello",{
+        //     detail : {name : "John"}
+        // }));
+    </script>
+</body>
+</html>

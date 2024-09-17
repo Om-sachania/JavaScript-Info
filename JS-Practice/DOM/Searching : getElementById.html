@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>getElementById,querySelector</title>
+</head>
+<body>
+    <div id="elem">
+        <div id="elem-content">Element</div>
+    </div>
+    <ul class = "words">
+        <li class = "letter">The</li>
+        <li class = "letter">test</li>
+    </ul>
+    <ul>
+        <li>has</li>
+        <li>passed</li>
+    </ul>
+
+    <form name="my-form">
+        <div class="article">Article</div>
+        <div class="long article">Long article</div>
+    </form>
+    <span>Span 1</span>
+    <script>
+        // getElementById() :   
+        let elem = document.getElementById('elem');
+        elem.style.background = 'lime';
+
+        // querySelectorAll() : 
+        let elements = document.querySelectorAll('ul > li:last-child');
+        for (const i of elements) {
+            console.log(i.innerHTML); // test , passed
+        }
+
+        console.log(document.querySelector('li:last-child').innerHTML); // test
+        /*
+            querySelector : It returns the first matched element. It is same as
+                document.querySelectorAll(css)[0]. But querySelector is faster then
+                querySelectorAll()
+        */
+        
+        // Matches : It returns TRUE if it matches the given CSS otherwise FALSE
+        for (const iterator of document.body.children) {
+            if(iterator.matches('#elem')){
+                console.log(iterator);
+            }        
+        }
+
+        // Closest : 
+        let letter = document.querySelector('.letter');
+        console.log(letter.closest('.words')); // return UL
+        console.log(letter.closest('body')); // return <body>
+        
+        // getElementByTagName : 
+        console.log("getElementsByTagName : ")
+        let allLi = document.getElementsByTagName('li');
+        for (const li of allLi) {
+            console.log(li);
+        }
+
+        // getElementByName & getElementByClassName : 
+        console.log("getElementsByName : ");
+        // getElementByName it only works when we gave 'name' attribute to any element
+        // HERE we can see in : <form name="my-form"> 'name' attribute is present
+        let form = document.getElementsByName('my-form')[0]; 
+        console.log(form);
+
+        console.log("getElementsByClassName : ");
+        let article = document.getElementsByClassName('article');
+        console.log(article.length); // found 2 elements with article.
+
+        // Live Collections : 
+            // All methods 'getElementsBy' return a live colllection : 
+            // NOTE : 'getElementById' return a static collection
+        let spans = document.getElementsByTagName('span');
+        console.log("Span Count : ",spans.length);
+        
+            // Where as querySelector returns a static collection
+        let querySpan = document.querySelectorAll('span');
+        console.log("Query Selector Span Count : ",querySpan.length);
+
+        /*
+            NOTE : Difference between querySelector & getElementsByTagName 
+                querySelector : it returns the element 
+                getElementsBytagName : it returns all the elements with that tagName
+                    & stores in HTMLCollections.
+        */
+    </script>
+    <span>Span 2</span>
+    <script>
+        console.log("Updated Span Count : ",spans.length);
+        console.log("Updated Query Selector Span Count : ",querySpan.length);
+
+        // 1.
+        let table = document.getElementById('age-table');
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Event Listener</title>
+</head>
+<body>
+    <input type="button" id="hider" value="Click to hide the text" />
+
+    <div id="text">Text</div>
+    <script>
+        // let btn = document.getElementById('hider');
+        // let div = document.getElementById('text');
+
+        // function hideText(){
+        //     text.innerHTML = null;
+        // }
+
+        // btn.onclick = hideText;
+
+        // Alternate Solution : 
+        // document.getElementById('hider').onclick = function() {
+        //     document.getElementById('text').hidden = true;
+        // }
+
+        // Task - 2 : 
+        document.getElementById('hider').onclick = function() {
+            this.hidden=true;   
+        }
+    </script>
+</body>
+</html>

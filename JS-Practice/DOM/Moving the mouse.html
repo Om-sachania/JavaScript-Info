@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse the mouse</title>
+    <style>
+        #box{
+            border: 2px solid black;
+            height:200px;
+            width: 200px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            font-size: 1.5rem;
+            background-color: aqua;
+            margin-top: 24px;
+        }
+        #container{
+            border: 2px solid black;
+            height:200px;
+            width: 200px;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        #box1,#box2,#box3{
+            height:50px;
+            width: 50px;
+            border: 1px solid blue;
+        }
+
+        .targetElem{
+            background-color: rgb(241, 167, 245);
+        }
+
+        .relatedTargetElem{
+            background-color: rgb(137, 204, 204);
+        }
+
+        #log {
+            height: 120px;
+            width: 350px;
+            display: block;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="box1"></div>
+        <div id="box2"></div>
+        <div id="box3"></div>
+    </div>
+    <textarea id="log">Events will show up here!</textarea>
+    <button onclick="textClear()">Clear</button>
+
+    <!-- <div id="box">
+        This is an Mouse Event Demo
+    </div> -->
+
+    <script>
+        // container.onmouseover=container.onmouseout = handler;
+
+        // function handler(event) {
+        //     function str(el) {
+        //         if (!el) return "null"
+        //         return el.id || el.tagName;
+        //     }
+        //     console.log('target : ' + str(event.target));
+        //     console.log('relatedTarget : ' + str(event.relatedTarget));
+        // }
+
+        /*
+            For mouseover : Mouseover means event occurs when a mouse pointer comes over an element,
+                event.target =  is the element where the mouse came over.
+                event.relatedTarget – is the element from which the mouse came (relatedTarget → target).
+
+            For mouseout : Mouseout means the element which it leaves
+                event.target – is the element that the mouse left.
+                event.relatedTarget – is the new under-the-pointer element, that mouse left for 
+                (target → relatedTarget).
+        */
+    
+        // Demo of mouseOver : 
+        // let box = document.getElementById('box');
+        // box.addEventListener('mouseover',(e)=>{
+        //     e.target.style.backgroundColor='lime';
+        //     e.target.textContent="MOUSE OVER Event";
+        // })
+
+        // Demo of mouseOut :
+        // box.addEventListener('mouseout',(e)=>{
+        //     e.target.style.backgroundColor='yellow';
+        //     e.target.textContent="MOUSE OUT Event";
+        // });
+
+        // Target Element & Related Target Element : 
+        let container = document.getElementById('container');
+        container.addEventListener('mouseover',e=>{
+            log.value+='\nTarget Element : '+e.target.id+'\n'+'Related Target Element : '+e.relatedTarget.id
+        });
+
+        let allDiv = document.querySelectorAll('div');
+        container.onmouseover=function(e) {
+            if (e.target.tagName!='DIV') return;
+            
+            function addingTargetElementClass(div){
+                for(let elem of allDiv) {
+                    elem.classList.remove('targetElem');
+                }
+                div.classList.add('targetElem');
+            }
+            addingTargetElementClass(e.target);
+
+                if(e.relatedTarget.tagName!='DIV') return ;
+            function addingRelatedTargetClass(div) {
+                for(let elem of allDiv) {
+                    elem.classList.remove('relatedTargetElem');
+                }
+                div.classList.add('relatedTargetElem');
+            }
+            addingRelatedTargetClass(e.relatedTarget);
+
+        }
+
+        function textClear() {
+            log.value=''
+        }
+    </script>
+</body>
+</html>

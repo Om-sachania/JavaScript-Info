@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrolling</title>
+</head>
+<body>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet facilis eaque molestias sunt earum perferendis fugiat expedita provident, dolorum accusantium accusamus ab voluptate numquam sit! Doloribus quis id facere repellat illum dolore soluta minima alias minus corrupti quo debitis, 
+    <script>
+    document.body.onkeydown=function(e){
+        if(e.key=='PageUp' || e.key=='PageDown' || e.key=='ArrowUp' || e.key=='ArrowDown'){
+            e.preventDefault();
+        }
+    }
+    </script>
+</body>
+</html>

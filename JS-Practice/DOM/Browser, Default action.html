@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser Default Action</title>
+</head>
+<body>
+    <button type="button" onclick="return false">Button 1</button>
+    <button type="button" onclick="event.preventDefault()">Button 2</button>
+
+    <ul id="menu" class="menu">
+        <li><a href="/admin">Admin</a></li>
+        <li><a href="/client">Client</a></li>
+        <li><a href="/user">User</a></li>
+    </ul>
+
+    <!-- event.defaultPrevented -->
+    <button>Right-click shows browser context menu</button>
+    <button oncontextmenu="alert('Our context menu'); return false">Right-click shows our context menu</button>
+
+    <!-- Task -->
+    <div id="task">
+        <p>How about to read <a href="https://wikipedia.org?">Wikipedia</a> or visit <a href="http://w3.org?">W3.org</a> and learn about modern standards?   </p>
+    </div>
+    <script>
+        // The Menu : 
+        let menu = document.querySelector('#menu');
+        menu.onclick=function(e){
+            if(e.target.nodeName!='A') return;
+            
+            let href = e.target.getAttribute('href');
+            console.log(href);
+
+            return false;
+        }
+
+        // event.defaultPrevented
+
+        // Task : 
+        let taskDiv = document.getElementById('task');
+        taskDiv.onclick=function(e){
+            // function handleLink(href) {
+            //     let isLeaving = confirm(`Leave for ${href}?`);
+            //     if (!isLeaving) return false;
+            // }
+
+        let target = event.target.closest('a');
+        console.log(target.getAttribute('href'));
+        return false
+        // if (target && contents.contains(target)) {
+        //     return handleLink(target.getAttribute('href'));
+        // }
+    }
+    </script>
+</body>
+</html>

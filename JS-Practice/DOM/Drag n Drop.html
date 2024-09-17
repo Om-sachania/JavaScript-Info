@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag n Drop</title>
+    <style>
+        .boxes{
+            height: 196px;
+            width: 196px;
+            border: 2px solid black;
+            display: inline-block;
+            margin: 16px;
+        }
+        #box1{
+            position:relative;
+        }
+        .rings{
+            height: 20px;
+            position: absolute;
+        }
+        #ring1{
+            width: 40px;
+            border: 1px solid rgb(56, 233, 56);
+            bottom: 44px;
+            left: 70px;
+        }
+        #ring2{
+            width: 60px;
+            border: 1px solid blue;
+            bottom: 22px;
+            left: 60px;
+        }
+        #ring3{
+            width: 80px;
+            border: 1px solid red;
+            bottom: 0;
+            left: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box1" class="boxes">
+        <div id="ring1" class="rings"></div>
+        <div id="ring2" class="rings"></div>
+        <div id="ring3" class="rings"></div>
+    </div>
+    <div id="box2" class="boxes"></div>
+    <div id="box3" class="boxes"></div>
+
+    <script>
+    let rings = document.querySelectorAll('.rings');
+
+    function dragRing(ball) {
+    ball.onmousedown = function(event) {
+
+        let shiftX = event.clientX - ball.getBoundingClientRect().left;
+        let shiftY = event.clientY - ball.getBoundingClientRect().top;
+
+        ball.style.position = 'absolute';
+        ball.style.zIndex = 1000;
+        document.body.append(ball);
+
+        moveAt(event.pageX, event.pageY);
+
+        // moves the ball at (pageX, pageY) coordinates
+        // taking initial shifts into account
+        function moveAt(pageX, pageY) {
+            ball.style.left = pageX - shiftX + 'px';
+            ball.style.top = pageY - shiftY + 'px';
+        }
+
+        function onMouseMove(event) {
+            moveAt(event.pageX, event.pageY);
+        }
+
+        // move the ball on mousemove
+        document.addEventListener('mousemove', onMouseMove);
+
+        // drop the ball, remove unneeded handlers
+        ball.onmouseup = function() {
+            document.removeEventListener('mousemove', onMouseMove);
+            ball.onmouseup = null;
+        };
+
+    };
+
+    ball.ondragstart = function() {
+        return false;
+    };
+    }
+
+rings.forEach((ball)=>{
+    dragRing(ball)
+})
+    
+    </script>
+</body>
+</html>

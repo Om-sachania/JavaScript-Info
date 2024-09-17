@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifying Doc Task</title>
+</head>
+<body>
+    <ol id="ol">
+        <li>Hello</li>
+        <li>World</li>
+    </ol>
+
+    <table id="table">
+        aaa
+        <tr>
+            <td>Test</td>
+        </tr>
+    </table>
+
+    <h1>Create a List</h1>
+
+    <!-- <ul>
+        <li>Fish
+            <ul>
+                <li>Salmon</li>
+                <li>Trout</li>
+            </ul>
+        </li>
+        <li>Tree
+            <ul>
+                <li>Huge
+                    <ul>
+                        <li>Oak</li>
+                    </ul>
+                </li>
+                <li>Flowering
+                    <ul>
+                        <li>Apple Tree</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul> -->
+
+    <!-- <script src="dom.js"></script> -->
+
+    <div id="clock">
+        <span class="hour">hh</span>:<span class="min">mm</span>:<span class="sec">ss</span>
+    </div>
+    <input type="button" onclick="clockStart()" value="Start">
+    <input type="button" onclick="clockStop()" value="Stop">
+    <script>
+
+        let orderList = ol;
+        //console.log(elem)
+        //console.log(orderList.firstElementChild);
+        // function clear(elem) {
+        //     for (let i = 0; i <= elem.children.length; i++) {
+        //         elem.children[0].remove();
+        //         //elem.children[0].remove();
+        //     }
+
+        //     // while (elem.firstChild) {
+        //     //     elem.firstChild.remove()
+        //     // }
+
+        //     //elem.innerHTML = '';
+        // }
+
+        // clear(orderList);
+        // console.log(orderList)
+
+        //table.remove();
+
+        //Task 3 : Dynamic adding li to List
+        // let unOrderList = document.createElement('ul');
+        // unOrderList.id = 'ulList';
+        
+
+        // while(true){
+        // let liContent = prompt("Enter Text for List Item");
+        //     if(!liContent){
+        //         break;  
+        //     }
+        //     let li = document.createElement('li');
+        //     li.textContent = liContent;
+        //     unOrderList.append(li);
+        // }
+
+        // document.body.append(unOrderList);
+
+        // Task - 4 : Create a Tree from the object 
+
+        let data = {
+            "Fish": {
+                "trout": {},
+                "salmon": {}
+            },
+            "Tree": {
+                "Huge": {
+                    "sequoia": {},
+                    "oak": {}
+                },
+                "Flowering": {
+                    "apple tree": {},
+                    "magnolia": {}
+                }
+            }
+        };
+
+        //let ulTree = document.createElement('ul');
+
+        // function createTree(obj) {
+        //     let ul = document.createElement('ul');
+        //     for (const key in obj) {
+        //         let liParent = document.createElement('li');
+        //         liParent.textContent = key; 
+        //         //ulTree.append(liParent);
+        //         let liParentUl = createTree(obj[key]);
+        //     }
+        // }
+        // createTree(data);
+        // for (const key in data) {
+        //     let liParent = document.createElement('li');
+        //     liParent.textContent = key; 
+        //     ulTree.append(liParent);
+        //     let liParentUl = document.createElement('ul');
+        //     for (const i in data[key]) {
+        //         let liChild = document.createElement('li');
+        //         liChild.textContent = i;
+        //         liParentUl.append(liChild);
+        //         let subUl = document.createElement('ul');
+        //             for (const x in data[key][i]) {
+        //                 let subLi = document.createElement('li');
+        //                 subLi.textContent = x;
+        //                 subUl.append(subLi);
+        //                 liParentUl.append(subUl)
+        //             }
+        //         liParent.append(liParentUl);
+        //     }
+            
+        // }
+
+        //document.body.append(ulTree);
+
+        // Task - 6 : Creating a Stop Watch 
+        function update(){
+            let clock = document.getElementById('clock');
+            let date = new Date();
+            let hour = date.getHours();
+            if (hour<10) hour = '0'+hour;
+            clock.children[0].innerHTML = hour;
+
+            let min = date.getMinutes();
+            if (min<10) min = '0'+min;
+            clock.children[1].innerHTML = min;
+
+            let sec = date.getSeconds();
+            if (sec<10) sec = '0'+sec;
+            clock.children[2].innerHTML = sec;
+
+        }
+
+        let timer;
+
+        function clockStart() {
+            if(!timer){
+                timer=setInterval(update,1000);
+            }
+            update();
+        }
+
+        function clockStop() {
+            clearInterval(timer);
+            timer = null;
+        }
+    </script>
+</body>
+</html>
