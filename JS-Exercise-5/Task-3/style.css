@@ -1,0 +1,20 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#main{
+    display: grid;
+    grid-template-columns: 120px 100px;
+    row-gap: 8px;
+    justify-content: center;
+    margin: 24px;
+    padding: 24px;
+}
+
+.boxes{
+    height: 100px;
+    width: 100px;
+    border: 2px solid black;
+    text-align: center;
+}

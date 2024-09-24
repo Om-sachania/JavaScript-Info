@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-In Page</title>
+</head>
+<link rel="stylesheet" href="style.css">
+<body>
+    <div id="container">
+        <h1>Sign In</h1>
+        <div id="details">
+            <form id="form">
+                <div class="signInDetails">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email">
+                </div>
+
+                <div class="signInDetails">
+                    <label for="password">Password</label>
+                    <input type="password" id="password">
+                </div>
+
+                <div class="signInDetails">
+                    <label for="role">Role : </label>
+                    <select id="role">
+                        <option value="student">Student</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+
+                <div class="buttons">
+                    <button id="signInButton" type="submit">Sign-In</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="signInscript.js"></script>
+</body>
+</html>
