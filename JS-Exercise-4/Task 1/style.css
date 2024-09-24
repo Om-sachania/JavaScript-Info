@@ -1,0 +1,88 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#main{
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 60px;
+}
+
+#upper{
+    display: flex;
+    justify-content:space-evenly;
+}
+
+#lower{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 24px;
+}
+
+#clock{
+    border: 1.5px solid rgba(96, 96, 95,0.2);
+    background-color: rgba(96, 96, 95,0.1);
+    display: flex;
+    width: 160px;
+    justify-content: center;
+    gap: 10px;
+    padding: 8px;
+    height: 16px;
+    font-weight: 600;
+}
+
+#displayDate{
+    border: 1.5px solid rgba(96, 96, 95,0.2);
+    background-color: rgba(96, 96, 95,0.1);
+    display: flex;
+    width: 160px;
+    justify-content: center;
+    gap: 10px;
+    padding: 8px;
+    height: 16px;
+    font-weight: 600;
+}
+
+button{
+    padding: 4px;
+    font-weight:900;
+    width: 64px;
+    border-radius: 15%;
+}
+#stopWatch b {
+    margin-right: 48px;
+}
+#stopWatch{
+    font-size: x-large;
+    display: flex;
+}
+
+#buttons{
+    display: flex;
+    gap: 12px;
+}
+
+button:disabled{
+    color: white;
+    border: 0cap;
+}
+
+#startBtn{
+    background-color: rgb(49, 220, 6);
+}
+
+#stopBtn{
+    background-color: red;
+}
+
+#resumeBtn{
+    background-color: yellow;
+}
+
+#resetBtn{
+    background-color: orange;
+}

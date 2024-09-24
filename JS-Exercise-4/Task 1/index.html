@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Exrecise-4</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="main">
+    <div id="upper">
+        <div id="clock">
+            <b>Time</b><span class="hours">hh</span>:<span class="mins">mm</span>:<span class="secs">ss</span>
+        </div>
+        <div id="displayDate">
+            <b>Date :  </b><span class="cDate">dd</span>
+        </div>
+    </div>
+    
+    <div id="lower">
+        <div id="stopWatch">
+            <b>Stopwatch </b><span class="hours">00</span>:<span class="mins">00</span>:<span class="secs">00</span>:<span class="miliSecs">00</span>
+        </div>
+        <div id="buttons">
+            <button id="startBtn" onclick="startStopWatch()">Start</button>
+            <button id="stopBtn" onclick="stopStopWatch()">Stop</button>
+            <button id="resumeBtn" onclick="resumeStopWatch()">Resume</button>
+            <button id="resetBtn" onclick="resetStopWatch()">Reset</button>
+        </div>
+    </div>
+</div>
+    <script src="script.js"></script>
+</body>
+</html>

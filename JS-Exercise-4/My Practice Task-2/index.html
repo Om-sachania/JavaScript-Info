@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Table</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .container {
+            margin-top: 20px;
+        }
+        .table-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Dynamic Table</h2>
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" class="form-control" placeholder="Enter first name">
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" class="form-control" placeholder="Enter last name">
+        </div>
+        <button id="addButton" class="btn btn-primary">Add</button>
+        <button id="updateButton" class="btn btn-warning" style="display: none;">Update</button>
+        
+        <div class="table-container">
+            <table class="table table-bordered" id="dataTable">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+    <script>
+        let editingRow = null;
+
+        function clearInputs() {
+            document.getElementById('firstName').value = '';
+            document.getElementById('lastName').value = '';
+        }
+
+        function addRow(firstName, lastName) {
+            const tableBody = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
+            const newRow = tableBody.insertRow();
+
+            const firstNameCell = newRow.insertCell(0);
+            const lastNameCell = newRow.insertCell(1);
+            const actionsCell = newRow.insertCell(2);
+
+            firstNameCell.textContent = firstName;
+            lastNameCell.textContent = lastName;
+
+            const editButton = document.createElement('button');
+            editButton.textContent = 'Edit';
+            editButton.className = 'btn btn-info btn-sm mr-2';
+            editButton.onclick = () => editRow(newRow, firstName, lastName);
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.className = 'btn btn-danger btn-sm';
+            deleteButton.onclick = () => deleteRow(newRow);
+
+            actionsCell.appendChild(editButton);
+            actionsCell.appendChild(deleteButton);
+        }
+
+        function editRow(row, firstName, lastName) {
+            document.getElementById('firstName').value = firstName;
+            document.getElementById('lastName').value = lastName;
+            editingRow = row;
+            document.getElementById('addButton').style.display = 'none';
+            document.getElementById('updateButton').style.display = 'inline';
+        }
+
+        function deleteRow(row) {
+            console.log(row)
+            // const tableBody = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
+            // tableBody.removeChild(row);
+        }
+
+        document.getElementById('addButton').addEventListener('click', () => {
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+
+            if (firstName && lastName) {
+                if (editingRow) {
+                    editingRow.cells[0].textContent = firstName;
+                    editingRow.cells[1].textContent = lastName;
+                    clearInputs();
+                    document.getElementById('addButton').style.display = 'inline';
+                    document.getElementById('updateButton').style.display = 'none';
+                    editingRow = null;
+                } else {
+                    addRow(firstName, lastName);
+                    clearInputs();
+                }
+            } else {
+                alert('Please enter both first and last names.');
+            }
+        });
+
+        document.getElementById('updateButton').addEventListener('click', () => {
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+
+            if (firstName && lastName && editingRow) {
+                editingRow.cells[0].textContent = firstName;
+                editingRow.cells[1].textContent = lastName;
+                clearInputs();
+                document.getElementById('addButton').style.display = 'inline';
+                document.getElementById('updateButton').style.display = 'none';
+                editingRow = null;
+            } else {
+                alert('Please enter both first and last names.');
+            }
+        });
+    </script>
+</body>
+</html>
